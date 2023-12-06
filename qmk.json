@@ -1,4 +1,8 @@
 {
     "userspace_version": "1.0",
-    "build_targets": []
+    "build_targets": [
+        ["controllerworks/mini42", "crimsonk1ng"],
+        ["boardsource/equals/48", "crimsonk1ng"],
+        ["keychron/q8/ansi_encoder", "crimsonk1ng"]
+    ]
 }

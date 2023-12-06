@@ -1,0 +1,20 @@
+//BOTH
+
+// HOME
+COMB(lesc,          KC_ESC,     MOD_R, MOD_S)
+COMB(lent,          KC_ENT,     MOD_M, MOD_N)
+// Left
+COMB(ctrl_bspc, C(KC_BSPC),      LAY_Y, MINS)
+
+// HOME
+COMB(esc_homer,     KC_ESC,      MOD_E, MOD_I)
+COMB(alfred,   G(KC_SPC),      MOD_S, LAY_F)
+// Right
+COMB(alt_bspc,  A(KC_BSPC),      LAY_U, LAY_Y)
+
+
+// BOTH
+COMB(caps,        CW_TOGG,       MOD_DOT, MOD_COMM)
+//COMB(lead,        QK_LEAD,       MOD_X, MOD_C)
+
+
