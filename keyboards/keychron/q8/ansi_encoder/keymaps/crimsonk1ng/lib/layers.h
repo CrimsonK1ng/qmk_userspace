@@ -1,7 +1,7 @@
 #pragma once
 
 typedef enum {
-    MAC_BASE,
+    QMK_BASE,
     WIN_BASE,
     _SYM,
     _BRK,

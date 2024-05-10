@@ -31,46 +31,48 @@ enum custom_keycodes {
 #define OSMGS OSM(MOD_LSFT | MOD_LGUI)
 
 // TOP RIGHT
-#define MOD_J KC_J
+#define MOD_Y KC_Y
 #define LAY_U KC_U
-#define LAY_Y LT(_BRK, KC_Y)
-#define MINS  MEH_T(KC_MINS)
+#define LAY_I KC_I
+#define LAY_O LT(_BRK, KC_O)
+#define LAY_P  MEH_T(KC_P)
 #define HBSPC HYPR_T(KC_BSPC)
 #define MBSPC MEH_T(KC_BSPC)
 // MIDDLE
-#define MOD_M     RSFT_T(KC_M)
-#define MOD_N     RGUI_T(KC_N)
-#define MOD_E     RCTL_T(KC_E)
-#define MOD_I     LT(_SYM, KC_I)
-#define MOD_O     LT(_BRK, KC_O)
+#define MOD_H     KC_H
+#define MOD_J     RGUI_T(KC_J)
+#define MOD_K     RCTL_T(KC_K)
+#define MOD_L     LT(_SYM, KC_L)
+#define MOD_SCLN  LT(_BRK, KC_SCLN)
 #define QUOT      MEH_T(KC_QUOT)
 // BOTTOM
 #define MOD_SLSH  RGUI_T(KC_SLSH)
 #define MOD_DOT   RCTL_T(KC_DOT)
 #define MOD_COMM  LALT_T(KC_COMM)
-#define MOD_H     KC_H
-#define MOD_K     KC_K
+#define MOD_M     LSFT_T(KC_M)
+#define MOD_N     KC_N
 // END RIGHT
 
 // TOP LEFT
 #define MOD_Q LT(_NUM, KC_Q)
 #define LAY_W LT(_NAV, KC_W)
-#define LAY_F LT(_NUM, KC_F)
-#define MOD_B LT(_FUNC, KC_B)
+#define LAY_E LT(_NUM, KC_E)
+#define MOD_R LT(_FUNC, KC_R)
+#define MOD_T KC_T
 // MIDDLE
-#define MOD_G   LSFT_T(KC_G)
-#define MOD_T   LGUI_T(KC_T)
-#define MOD_S   LCTL_T(KC_S)
-#define MOD_R   LT(_SYM, KC_R)
+#define MOD_G   KC_G
+#define MOD_F   LGUI_T(KC_F)
+#define MOD_D   LCTL_T(KC_D)
+#define MOD_S   LT(_SYM, KC_S)
 #define MOD_A   LT(_NAV, KC_A)
-#define MODLAY  LT(_NAV, KC_BSPC) // outer column
+#define MODLAY  OSL(_SYM)//LT(_NAV, KC_BSPC) // outer column
 // BOTTOM
 #define NUM_DEL LT(_NUM, KC_DEL)
 #define MOD_Z   LGUI_T(KC_Z)
 #define MOD_X   LCTL_T(KC_X)
 #define MOD_C   LALT_T(KC_C)
-#define MOD_D   KC_D
-#define MOD_V   KC_V
+#define MOD_V   LSFT_T(KC_V)
+#define MOD_B   KC_B
 // THUMBS
 #define BSPC   LT(_NUM, KC_BSPC)
 #define ENT    LT(_NAV, KC_ENT)

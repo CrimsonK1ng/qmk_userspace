@@ -31,8 +31,8 @@
 #    include "os_detection.h"
 #endif
 
-bool is_gui_tab_active = false; // ADD this near the begining of keymap.c
-uint16_t alt_tab_timer = 0;     // we will be using them soon.
+bool     is_gui_tab_active = false; // ADD this near the begining of keymap.c
+uint16_t alt_tab_timer     = 0;     // we will be using them soon.
 // END ALT TAB Timer
 uint16_t timer;
 
@@ -42,12 +42,12 @@ uint16_t timer;
 #define KC_FLXP LGUI(KC_E)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [MAC_BASE] = LAYOUT_ansi_69(
-        ADJUST,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,  KC_BSPC,          KC_MUTE,
-        KC_TAB,  MOD_Q,   LAY_W,    LAY_F,    KC_P,   MOD_B,   MOD_J,     KC_L,   LAY_U,   LAY_Y,    MINS,       HBSPC,    MBSPC,  KC_BSLS,          KC_DEL,
-     OSL(_SYM),  MOD_A,   MOD_R,    MOD_S,   MOD_T,   MOD_G,             MOD_M,   MOD_N,   MOD_E,   MOD_I,       MOD_O,  KC_QUOT,  KC_ENT,           KC_HOME,
-         MOD_Z,           MOD_X,    MOD_C,   MOD_D,   MOD_V,   MOD_Z,    MOD_K,   MOD_K,   MOD_H,MOD_COMM,     MOD_DOT, MOD_SLSH,  KC_RSFT, KC_UP,
-       QK_LEAD, KC_LOPT,  CW_TOGG,           BSPC,              ENT,     OSMS,         SPC,            TAB,            KC_LEFT, KC_DOWN, KC_RGHT),
+    [QMK_BASE] = LAYOUT_ansi_69(
+        ADJUST,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,   KC_7,     KC_8,    KC_9,     KC_0,     KC_MINS,  KC_EQL,  KC_BSPC,          KC_MUTE,
+        KC_TAB,  MOD_Q,   LAY_W,    LAY_E,   MOD_R,   MOD_T,            MOD_Y,    KC_U,   LAY_I,    LAY_O,        KC_P,   HBSPC,    MBSPC, KC_BSLS,  KC_DEL,
+     OSL(_SYM),  MOD_A,   MOD_S,    MOD_D,   MOD_F,   MOD_G,            MOD_H,   MOD_J,   MOD_K,    MOD_L,    MOD_SCLN,  KC_QUOT,  KC_ENT,          KC_HOME,
+       KC_LSFT,  MOD_Z,   MOD_X,    MOD_C,   MOD_V,   MOD_B,            MOD_B,   MOD_N,   MOD_M, MOD_COMM,     MOD_DOT, MOD_SLSH,  KC_RSFT,  KC_UP,
+       QK_LEAD, KC_LOPT,            CW_TOGG,    BSPC,   ENT,             OSMS,         SPC,           TAB,                        KC_LEFT, KC_DOWN, KC_RGHT),
 
     [WIN_BASE] = LAYOUT_ansi_69(
         KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
@@ -57,29 +57,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LWIN,  KC_LALT,         KC_SPC,        KC_ENT, OSMS,            SPC,            KC_RALT,            KC_LEFT, KC_DOWN, KC_RGHT),
 
     [_SYM] = LAYOUT_ansi_69(
-        KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
-        _______, TD_TILDA,  KC_SLSH,  KC_COLN, KC_PLUS,      WQ,          KC_PIPE,  KC_AMPR, KC_ASTR, KC_QUES, KC_MINS,  _______,  _______,  _______,          _______,
-        KC_PIPE,    KC_AT, KC_PERC,  KC_EXLM,  KC_EQL, KC_PIPE,                     KC_COLN,  KC_EQL,  KC_DQT, KC_UNDS,  KC_SCLN,  KC_BSLS,  _______,          _______,
-        _______,               GRV,  KC_HASH, KC_BSLS, KC_BSLS,TD_UPDIR, TD_UPDIR,TD_UPDIR,  KC_CIRC,  KC_DLR,  KC_DOT,  _______,  _______, _______,
-        _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
+        KC_ESC,      KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,     KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
+        _______, TD_TILDA,  KC_SLSH,  KC_COLN, KC_PLUS,      WQ,           KC_PIPE,  KC_AMPR, KC_ASTR, KC_QUES, KC_MINS,  _______,  _______, _______, _______,
+        KC_PIPE,    KC_AT,  KC_PERC,  KC_EXLM,  KC_EQL, KC_PIPE,           KC_COLN,   KC_EQL,  KC_DQT, KC_UNDS, KC_SCLN,  KC_BSLS,  _______,          _______,
+        _______,  _______,      GRV, KC_HASH, KC_BSLS, TD_UPDIR,          TD_UPDIR, TD_UPDIR, KC_CIRC,  KC_DLR,  KC_DOT,  _______,  _______, _______,
+        _______,  _______,           _______, _______,  _______,           _______,  _______, _______,                    _______,  _______, _______),
 
     [_BRK] = LAYOUT_ansi_69(
         _______, _______,  _______,  _______, _______, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          RGB_TOG,
-        KC_MINS,   KC_LT,    KC_GT,  KC_LCBR, KC_RCBR, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          _______,
+        KC_MINS,   KC_LT,    KC_GT,  KC_LCBR, KC_RCBR, _______,           _______, _______, _______, _______,  _______,  _______,  _______, _______, _______,
         _______, _______,  KC_LPRN,  KC_RPRN,   KC_LT,   KC_GT,           _______, _______, _______, _______,  _______,  _______,  _______,          _______,
-        _______,           _______,  KC_LBRC, KC_RBRC, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______, _______,
+        _______, _______,  KC_LBRC, KC_RBRC,  _______, _______,           _______, _______, _______, _______,  _______,  _______,  _______, _______,
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______),
 
     [_NAV] = LAYOUT_ansi_69(
         _______, _______,  _______,  _______, _______, _______, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          RGB_TOG,
-        _______,    OSMM,     OSMP,     OSMA, _______, _______,            /*NORM*/KC_PGUP,  PRVTAB,  NXTTAB,  CMDTAB,   CMDGRV,  KC_BSPC,  _______,  _______,          _______,
-           OSMH,    OSMG,     OSMA,     OSMC,    OSMS, _______,           /*NORM*/ KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT,  _______,  _______,  _______,          _______,
-        _______,           _______,     OSMG,    OSMA, _______, _______, /*EXTRA*/ _______, /*EXTRA*/ KC_PGDN, KC_HOME,  KC_END,   C_BSP,  _______,  _______, _______,
+        _______,    OSMM,     OSMP,     OSMA, _______, _______,           KC_PGUP,  PRVTAB,  NXTTAB,  CMDTAB,   CMDGRV,  KC_BSPC,  _______, _______, _______,
+           OSMH,    OSMG,     OSMA,     OSMC,    OSMS, _______,           KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT,  _______,  _______,  _______,          _______,
+        _______, _______,     OSMG,     OSMA, _______, _______,           _______, KC_PGDN, KC_HOME,  KC_END,    C_BSP,  _______,  _______, _______,
         _______, _______,  _______,           KC_LCTL,          KC_LGUI,  KC_LSFT,              ENT,             A_BSP,            _______, _______, _______),
 
     [_NUM] = LAYOUT_ansi_69(
-        KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,   KC_6,     KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
-        _______,     OSMM,    OSMP,  _______, _______, _______,           _______,    KC_7,    KC_8,    KC_9, KC_MINS,  KC_BSPC,  _______,  _______,          _______,
+        KC_ESC,     KC_1,     KC_2,     KC_3,    KC_4,    KC_5,   KC_6,      KC_7,    KC_8,    KC_9,    KC_0,  KC_MINS,   KC_EQL,  KC_BSPC,          KC_MUTE,
+        _______,    OSMM,     OSMP,  _______, _______, _______,           _______,    KC_7,    KC_8,    KC_9,  KC_MINS,  KC_BSPC,  _______, _______, _______,
            OSMH,    OSMG,     OSMA,     OSMC,    OSMS, _______,           _______,    KC_4,    KC_5,    KC_6,  KC_COLN,  KC_BSLS,  _______,          _______,
         _______,           _______,  _______, _______, _______, _______,  _______,  KC_DOT,    KC_1,    KC_2,     KC_3,  KC_SLSH,  _______, _______,
         _______, _______,  _______,           CW_TOGG,           KC_DOT,  _______,           POPZED,           _______,            _______, _______, _______),
@@ -99,20 +99,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,           _______,          _______,  _______,          _______,           _______,            _______, _______, _______)
 };
 
-// clang-format on
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [QMK_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_SYM]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-    [_BRK]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-    [_NAV]   = {ENCODER_CCW_CW(_______, _______)},
-    [_NUM]   = {ENCODER_CCW_CW(_______, _______)},
-    [_FUNC]   = {ENCODER_CCW_CW(_______, _______)},
-    [_ADJUST]   = {ENCODER_CCW_CW(_______, _______)}
+    [_SYM] = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+    [_BRK] = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+    [_NAV] = {ENCODER_CCW_CW(_______, _______)},
+    [_NUM] = {ENCODER_CCW_CW(_______, _______)},
+    [_FUNC] = {ENCODER_CCW_CW(_______, _______)},
+    [_ADJUST] = {ENCODER_CCW_CW(_______, _______)}
 };
 #endif // ENCODER_MAP_ENABLE
 
+// clang-format on
 #ifdef TAPPING_TERM_PER_KEY
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -129,19 +129,19 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // case SPC: // still use permissive hold for ctrl
         //     return TAPPING_TERM - 25;
         case MOD_A: // try high tapping term and permissive hold
-        case MOD_R: // alt is annoying to trigger
+        case MOD_S: // alt is annoying to trigger
             return TAPPING_TERM + 15;
-        case MOD_S:
-        case MOD_T:
+        case MOD_D:
+        case MOD_F:
             // return TAPPING_TERM - 10;
         // case MOD_G:
 
         // case MOD_M:
-        case MOD_N:
-        case MOD_E: // still use permissive hold for ctrl
+        case MOD_J:
+        case MOD_K: // still use permissive hold for ctrl
             return TAPPING_TERM - 10;
-        case MOD_I:
-        case MOD_O: // this pinky lags behind the most, more than left pinky
+        case MOD_L:
+        case MOD_SCLN: // this pinky lags behind the most, more than left pinky
             return TAPPING_TERM + 15;
 
         default:
@@ -156,7 +156,6 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         // Home-row and other tight combos
         case esc_homer:
         case lesc:
-        case lent:
         case tab:
             return COMBO_TERM - 10;
         // case ctrl_bspc:
@@ -223,25 +222,23 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
             //
         case MODLAY:
         case MOD_A: // try high tapping term and permissive hold
-        case MOD_R: // alt is annoying to trigger
-        case MOD_S:
-        case MOD_T:
+        case MOD_S: // alt is annoying to trigger
+        case MOD_D:
+        case MOD_F:
         case MOD_G:
 
-        case LAY_U:
-        case LAY_Y:
+        case LAY_I:
+        case LAY_O:
 
-        case MOD_M:
-        case MOD_N:
-        case MOD_E: // still use permissive hold for ctrl
-        case MOD_I:
-        case MOD_O: // this pinky lags behind the most, more than left pinky
+        case MOD_H:
+        case MOD_J:
+        case MOD_K: // still use permissive hold for ctrl
+        case MOD_L:
+        case MOD_SCLN: // this pinky lags behind the most, more than left pinky
         case QUOT:
             // bottom row
         case MOD_V:
-        case MOD_D:
-        case MOD_K:
-        case MOD_H:
+        case MOD_M:
 
             return false;
         default:
