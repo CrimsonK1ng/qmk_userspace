@@ -1,0 +1,7 @@
+// HOME
+COMB(lesc,          KC_ESC,     MOD_R, MOD_S)
+COMB(lent,          KC_ENT,     MOD_M, MOD_N)
+COMB(alt_bspc,  A(KC_BSPC),      MOD_U, MOD_Y)
+COMB(ctrl_bspc, C(KC_BSPC),      MOD_Y, MINS)
+
+COMB(resc,     KC_ESC,      MOD_E, MOD_I)

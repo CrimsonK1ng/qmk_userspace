@@ -28,12 +28,15 @@
 
 #define QUICK_TAP_TERM 150
 
-// #define USB_SUSPEND_WAKEUP_DELAY 200
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_INVERT_ON_SHIFT
 
 #define SPLIT_USB_DETECT
-#define SPLIT_USB_TIMEOUT 2000
+
+#undef SPLIT_USB_TIMEOUT
+#define SPLIT_USB_TIMEOUT 3000
+
+#define USB_SUSPEND_WAKEUP_DELAY 200
 #define SPLIT_USB_TIMEOUT_POLL 10
 #define SPLIT_WATCHDOG_ENABLE
 #define SPLIT_WATCHDOG_TIMEOUT 3000
@@ -76,7 +79,7 @@
 #    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 // #   define RGB_MATRIX_LED_PROCESS_LIMIT (RGB_MATRIX_LED_COUNT + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
 // #   define RGB_MATRIX_LED_FLUSH_LIMIT 16 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
-#    define RGB_MATRIX_TIMEOUT 600000         // 600 seconds / 10 min
+#    define RGB_MATRIX_TIMEOUT 300000         // 600 seconds / 10 min
 #    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
 #    define RGB_MATRIX_HUE_STEP 8
 #    define RGB_MATRIX_SAT_STEP 8

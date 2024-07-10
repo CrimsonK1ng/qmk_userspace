@@ -46,9 +46,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
           ESC,   MOD_Z,   MOD_X,   MOD_C,   MOD_D,   MOD_V,                        MOD_K,   MOD_H,MOD_COMM, MOD_DOT, MOD_SLSH, QK_REP,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CW_TOGG,    BSPC,     ENT,       OSMS,     SPC,  TAB
+                                           QK_REP,    BSPC,     ENT,       OSMS,     SPC,  TAB
                                       //`--------------------------'  `--------------------------'
 
+  ),
+
+  [_BRK] = LAYOUT_FUN( // bracks on right, terminal stuff left
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      KC_MINS,   KC_LT,   KC_GT, KC_LCBR, KC_RCBR, _______,                      _______, _______,MO(_SYM), _______, _______, _______,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, _______, KC_LPRN, KC_RPRN, KC_MINS, _______,                      _______, _______, _______, _______, _______, _______,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, _______, KC_LBRC, KC_RBRC, _______, _______,                      _______, _______, _______, _______, _______, _______,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          _______, KC_COLN, KC_MINS,   _______, _______, _______
+                                       //`--------------------------'  `--------------------------'
   ),
 
   [_SYM] = LAYOUT_FUN(
@@ -59,21 +71,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, _______,     GRV, KC_HASH, KC_BSLS, TD_UPDIR,                    TD_UPDIR, KC_CIRC,  KC_DLR,  KC_DOT, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                              GRV, _______, MO(_BRK),  MO(_BRK), _______, _______
+                                          _______, _______, _______,  MO(_BRK), _______, _______
                                        //`--------------------------'  `--------------------------'
   ),
 
-  [_BRK] = LAYOUT_FUN( // bracks on right, terminal stuff left
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_MINS,   KC_LT,   KC_GT, KC_LCBR, KC_RCBR, _______,                      _______, KC_RCBR, KC_LCBR,   KC_GT,   KC_LT, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, KC_LPRN, KC_RPRN, KC_MINS, _______,                      _______, _______, KC_RPRN, KC_LPRN, _______, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, KC_LBRC, KC_RBRC, _______, _______,                      _______, _______, KC_RBRC, KC_LBRC, _______, _______,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, KC_COLN, _______,   _______, _______, _______
-                                       //`--------------------------'  `--------------------------'
-  ),
 
   [_NAV] = LAYOUT_FUN( //trying redundent mod placement for easier navigation
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -144,13 +145,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         //     return TAPPING_TERM - 25;
         case MOD_A: // try high tapping term and permissive hold
         case MOD_R: // alt is annoying to trigger
+            return TAPPING_TERM + 25;
+        case MOD_S:
+        case MOD_T:
+            return TAPPING_TERM - 10;
+        // case MOD_G:
         case MOD_H:
         case MOD_D:
             return TAPPING_TERM + 15;
-        case MOD_S:
-        case MOD_T:
-            // return TAPPING_TERM - 10;
-        // case MOD_G:
 
         // case MOD_M:
         case MOD_N:
@@ -158,7 +160,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM - 10;
         case MOD_I:
         case MOD_O: // this pinky lags behind the most, more than left pinky
-            return TAPPING_TERM + 15;
+            return TAPPING_TERM + 25;
 
         default:
             return TAPPING_TERM;
@@ -174,6 +176,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case lesc:
         case lent:
         case alfred:
+        case capsl:
+        case capsr:
             return COMBO_TERM - 10;
         // case ctrl_bspc:
         // case ltab:
@@ -236,38 +240,39 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case BSPC:
+        case ENT:
             return true;
         default:
-            return true;
-/*
-            // MIDDLE
-            //
-        case MODLAY:
-        case MOD_A: // try high tapping term and permissive hold
-        case MOD_R: // alt is annoying to trigger
-        case MOD_S:
-        case MOD_T:
-        case MOD_G:
-
-        case LAY_U:
-        case LAY_Y:
-
-        case MOD_M:
-        case MOD_N:
-        case MOD_E: // still use permissive hold for ctrl
-        case MOD_I:
-        case MOD_O: // this pinky lags behind the most, more than left pinky
-        case QUOT:
-            // bottom row
-        case MOD_V:
-        case MOD_D:
-        case MOD_K:
-        case MOD_H:
-
             return false;
-        default:
-            return true;
-*/
+            /*
+                        // MIDDLE
+                        //
+                    case MODLAY:
+                    case MOD_A: // try high tapping term and permissive hold
+                    case MOD_R: // alt is annoying to trigger
+                    case MOD_S:
+                    case MOD_T:
+                    case MOD_G:
+
+                    case LAY_U:
+                    case LAY_Y:
+
+                    case MOD_M:
+                    case MOD_N:
+                    case MOD_E: // still use permissive hold for ctrl
+                    case MOD_I:
+                    case MOD_O: // this pinky lags behind the most, more than left pinky
+                    case QUOT:
+                        // bottom row
+                    case MOD_V:
+                    case MOD_D:
+                    case MOD_K:
+                    case MOD_H:
+
+                        return false;
+                    default:
+                        return true;
+            */
     }
 }
 #endif

@@ -43,10 +43,10 @@ uint16_t timer;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QMK_BASE] = LAYOUT_ansi_69(
-        ADJUST,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,   KC_7,     KC_8,    KC_9,     KC_0,     KC_MINS,   KC_EQL,  KC_BSPC,          KC_MUTE,
-        KC_TAB,  MOD_Q,   LAY_W,    LAY_F,   MOD_P,   MOD_B,            MOD_J,    KC_L,   LAY_U,    LAY_Y,        DASH,  KC_LBRC,  KC_RBRC, KC_BSLS,  KC_DEL,
-     OSL(_SYM),  MOD_A,   MOD_R,    MOD_S,   MOD_T,   MOD_G,            MOD_M,   MOD_N,   MOD_E,    MOD_I,       MOD_O,  KC_QUOT,   KC_ENT,          KC_HOME,
-         MOD_Z,  MOD_X,   MOD_C,    MOD_D,   MOD_V,   MOD_B,            MOD_B,   MOD_K,   MOD_H, MOD_COMM,     MOD_DOT, MOD_SLSH,  KC_RSFT,  KC_UP,
+        ADJUST,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,   KC_7,     KC_8,    KC_9,     KC_0,     KC_MINS,  KC_EQL,  KC_BSPC,          KC_MUTE,
+        KC_TAB,  MOD_Q,   LAY_W,    LAY_E,   MOD_R,   MOD_T,            MOD_Y,    KC_U,   LAY_I,    LAY_O,        KC_P,   HBSPC,    MBSPC, KC_BSLS,  KC_DEL,
+     OSL(_SYM),  MOD_A,   MOD_S,    MOD_D,   MOD_F,   MOD_G,            MOD_H,   MOD_J,   MOD_K,    MOD_L,    MOD_SCLN,  KC_QUOT,  KC_ENT,          KC_HOME,
+       KC_LSFT,  MOD_Z,   MOD_X,    MOD_C,   MOD_V,   MOD_B,            MOD_B,   MOD_N,   MOD_M, MOD_COMM,     MOD_DOT, MOD_SLSH,  KC_RSFT,  KC_UP,
        QK_LEAD, KC_LOPT,            CW_TOGG,    BSPC,   ENT,             OSMS,         SPC,           TAB,                        KC_LEFT, KC_DOWN, KC_RGHT),
 
     [WIN_BASE] = LAYOUT_ansi_69(
@@ -129,19 +129,19 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // case SPC: // still use permissive hold for ctrl
         //     return TAPPING_TERM - 25;
         case MOD_A: // try high tapping term and permissive hold
-        case MOD_R: // alt is annoying to trigger
+        case MOD_S: // alt is annoying to trigger
             return TAPPING_TERM + 15;
-        case MOD_S:
-        case MOD_T:
+        case MOD_D:
+        case MOD_F:
             // return TAPPING_TERM - 10;
         // case MOD_G:
 
         // case MOD_M:
-        case MOD_N:
-        case MOD_E: // still use permissive hold for ctrl
+        case MOD_J:
+        case MOD_K: // still use permissive hold for ctrl
             return TAPPING_TERM - 10;
-        case MOD_I:
-        case MOD_O: // this pinky lags behind the most, more than left pinky
+        case MOD_L:
+        case MOD_SCLN: // this pinky lags behind the most, more than left pinky
             return TAPPING_TERM + 15;
 
         default:
@@ -222,20 +222,23 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
             //
         case MODLAY:
         case MOD_A: // try high tapping term and permissive hold
-        case MOD_R: // alt is annoying to trigger
-        case MOD_S:
-        case MOD_T:
+        case MOD_S: // alt is annoying to trigger
+        case MOD_D:
+        case MOD_F:
         case MOD_G:
 
-        case MOD_M:
-        case MOD_N:
-        case MOD_E: // still use permissive hold for ctrl
-        case MOD_I:
-        case MOD_O: // this pinky lags behind the most, more than left pinky
+        case LAY_I:
+        case LAY_O:
+
+        case MOD_H:
+        case MOD_J:
+        case MOD_K: // still use permissive hold for ctrl
+        case MOD_L:
+        case MOD_SCLN: // this pinky lags behind the most, more than left pinky
         case QUOT:
             // bottom row
-        case MOD_H:
-        case MOD_D:
+        case MOD_V:
+        case MOD_M:
 
             return false;
         default:

@@ -3,6 +3,8 @@
 // HOME
 COMB(lesc,          KC_ESC,     MOD_R, MOD_S)
 COMB(lent,          KC_ENT,     MOD_M, MOD_N)
+
+
 // Left
 COMB(ctrl_bspc, C(KC_BSPC),      LAY_Y, MINS)
 
@@ -14,7 +16,9 @@ COMB(alt_bspc,  A(KC_BSPC),      LAY_U, LAY_Y)
 
 
 // BOTH
-COMB(caps,        CW_TOGG,       MOD_DOT, MOD_COMM)
+COMB(capsr,        CW_TOGG,       LAY_U, MOD_E)
+COMB(capsl,        CW_TOGG,       LAY_W, LAY_F)
+COMB(tab,         KC_TAB,        MOD_DOT, MOD_COMM)
 //COMB(lead,        QK_LEAD,       MOD_X, MOD_C)
 
 

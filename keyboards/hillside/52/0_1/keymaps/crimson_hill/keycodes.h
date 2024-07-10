@@ -1,22 +1,10 @@
 #pragma once
 
-#include "action_code.h"
-#include "action_util.h"
 // clang-format off
 
 #include QMK_KEYBOARD_H
 #include "layers.h"
 
-// MACROS
-enum custom_keycodes {
-  // some custom keys
-  OSX = SAFE_RANGE,
-  // LLOCK,
-  WQ,
-  CMDGRV,
-  CMDTAB,
-  ALTTAB,
-};
 
 // One shot mods
 #define OSMS OSM(MOD_LSFT)
@@ -30,42 +18,43 @@ enum custom_keycodes {
 #define OSMCS OSM(MOD_LSFT | MOD_LCTL)
 #define OSMGS OSM(MOD_LSFT | MOD_LGUI)
 
+#define BRACKS OSL(_BRK)
+
 // TOP RIGHT
 #define MOD_J KC_J
-#define LAY_U KC_U
-#define LAY_I KC_I
-#define LAY_Y LT(_BRK, KC_Y)
-#define  DASH MEH_T(KC_MINS)
-#define HBSPC HYPR_T(KC_BSPC)
-#define MBSPC MEH_T(KC_BSPC)
+#define MOD_L KC_L
+#define MOD_U KC_U
+#define MOD_Y LT(_BRK, KC_Y)
+#define MINS  KC_MINS
+#define FBSPC LT(_FUNC, KC_BSPC)
 // MIDDLE
-#define MOD_M     KC_M
+#define MOD_M     MEH_T(KC_M)
 #define MOD_N     RGUI_T(KC_N)
 #define MOD_E     RCTL_T(KC_E)
 #define MOD_I     LT(_SYM, KC_I)
-#define MOD_O  LT(_BRK, KC_O)
-#define QUOT      MEH_T(KC_QUOT)
+#define MOD_O     LT(_BRK, KC_O)
+#define QUOT      HYPR_T(KC_QUOT)
 // BOTTOM
-#define MOD_SLSH  RGUI_T(KC_SLSH)
+#define MOD_K     KC_K
+#define MOD_H     RSFT_T(KC_H)
 #define MOD_DOT   RCTL_T(KC_DOT)
 #define MOD_COMM  LALT_T(KC_COMM)
-#define MOD_H     LSFT_T(KC_H)
-#define MOD_K     KC_K
+#define MOD_SLSH  RGUI_T(KC_SLSH)
 // END RIGHT
 
 // TOP LEFT
 #define MOD_Q LT(_NUM, KC_Q)
-#define LAY_W LT(_NAV, KC_W)
-#define LAY_F LT(_NUM, KC_F)
-#define MOD_P LT(_FUNC, KC_P)
+#define MOD_W LT(_NAV, KC_W)
+#define MOD_F LT(_NUM, KC_F)
+#define MOD_P KC_P
 #define MOD_B KC_B
 // MIDDLE
-#define MOD_G   KC_G
-#define MOD_T   LGUI_T(KC_T)
-#define MOD_S   LCTL_T(KC_S)
-#define MOD_R   LT(_SYM, KC_R)
+#define MODLAY  LT(_NAV, KC_BSPC) // outer column
 #define MOD_A   LT(_NAV, KC_A)
-#define MODLAY  OSL(_SYM)//LT(_NAV, KC_BSPC) // outer column
+#define MOD_R   LT(_SYM, KC_R)
+#define MOD_S   LCTL_T(KC_S)
+#define MOD_T   LGUI_T(KC_T)
+#define MOD_G   MEH_T(KC_G)
 // BOTTOM
 #define NUM_DEL LT(_NUM, KC_DEL)
 #define MOD_Z   LGUI_T(KC_Z)
@@ -73,10 +62,9 @@ enum custom_keycodes {
 #define MOD_C   LALT_T(KC_C)
 #define MOD_D   LSFT_T(KC_D)
 #define MOD_V   KC_V
-#define MOD_B   KC_B
 // THUMBS
-#define BSPC   LT(_NUM, KC_BSPC)
-#define ENT    LT(_NAV, KC_ENT)
+#define BSPC   LT(_NAV, KC_BSPC)
+#define ENT    LSFT_T(KC_ENT)
 #define SYMO   OSL(_SYM)
 // END LEFT
 
@@ -84,7 +72,7 @@ enum custom_keycodes {
 
 // Stuff
 #define GRV     LT(0, KC_GRV)
-#define ADJUST  LT(_ADJUST, KC_BSPC)
+#define ADJUST  LT(_ADJUST, KC_TAB)
 #define ESC     LT(_NUM, KC_ESC)
 #define SPC    LT(_BRK, KC_SPC)//LT(0, KC_SPC)// RCTL_T(KC_SPC)
 #define TAB    HYPR_T(KC_TAB)
