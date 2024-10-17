@@ -3,10 +3,11 @@
 typedef enum {
     _BASE,
     _SYM,
-    _BRK,
     _NAV,
     _NUM,
     _FUNC,
+    _NUMLINE,
     _ADJUST,
-    _GAME,
+    _LBRK,
+    _RBRK,
 } layers_t;

@@ -12,9 +12,13 @@ enum custom_keycodes {
     OSX = SAFE_RANGE,
     // LLOCK,
     WQ,
+    UPDIR,
     CMDGRV,
     CMDTAB,
     ALTTAB,
+    BRKS,
+    CURLS,
+    PARS,
 };
 
 #define xxxxxxx KC_NO
@@ -27,34 +31,28 @@ uint16_t timer;
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-     ADJUST,  MOD_Q,    MOD_W,    MOD_F,    MOD_P,    MOD_B,                                   MOD_J,    MOD_L,    MOD_U,    MOD_Y,     MINS,    KC_BSPC,
+     ADJUST,  MOD_Q,    MOD_W,    MOD_F,    MOD_P,    MOD_B,                                   MOD_J,    MOD_L,    MOD_U,    MOD_Y,    MINS,    KC_BSPC,
      MODLAY,  MOD_A,    MOD_R,    MOD_S,    MOD_T,    MOD_G,                                   MOD_M,    MOD_N,    MOD_E,    MOD_I,    MOD_O,    QUOT,
-     CW_TOGG, MOD_Z,    MOD_X,    MOD_C,    MOD_D,    MOD_V, BRACKS,               BRACKS, MOD_K,    MOD_H,    MOD_COMM, MOD_DOT,  MOD_SLSH,   CW_TOGG,
-     KC_MUTE, KC_ESC,  KC_LCTL,         KC_LGUI, KC_LALT, BSPC, ENT,       OSMS ,   SPC ,   TAB, KC_RGUI,                   KC_LEFT, KC_DOWN, KC_RGHT
+     CW_TOGG, MOD_Z,    MOD_X,    MOD_C,    MOD_D,    MOD_V, KC_QUES,               KC_DQT,    MOD_K,    MOD_H,    MOD_COMM, MOD_DOT,  MOD_SLSH,   CW_TOGG,
+     FUNCDEL, KC_VOLD,  KC_VOLU,      OSL(_NUM),  OSL(_SYM), BSPC, ENT,       OSMS,   SPC , OSL(_SYM), KC_TAB,    PARS, CURLS,    BRKS
     ),
     [_SYM] = LAYOUT(
-     _______, KC_TILD, KC_SLSH, KC_COLN, KC_PLUS, KC_BSLS,                                        _______, KC_AMPR, KC_ASTR, KC_QUES, KC_MINS, _______,
-     _______,   KC_AT, KC_PERC, KC_EXLM,  KC_EQL, KC_PIPE,                                        _______,  KC_EQL,  KC_DQT, KC_UNDS, KC_SCLN, _______,
-     _______,     GRV,  KC_GRV, KC_HASH,   KC_LT,   KC_GT, _______,                      _______, KC_SCLN, KC_CIRC,  KC_DLR,  KC_DOT, _______, _______,
-     _______, _______, _______,          _______, _______, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
-    ),
-    [_BRK] = LAYOUT(
-     _______,   KC_LT,   KC_GT, KC_LCBR, KC_RCBR, _______,                                        _______, KC_RCBR, KC_LCBR, _______, _______, _______,
-     _______,   KC_AT, KC_LPRN, KC_RPRN, KC_MINS, _______,                                        _______, KC_RPRN, KC_LPRN,  KC_EQL, _______, _______,
-     _______, _______, KC_LBRC, KC_RBRC, _______, _______, _______,                      _______, _______, KC_RBRC, KC_LBRC, _______, _______, _______,
-     _______, _______, _______,          _______, _______, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
+     KC_TILD, KC_BSLS, KC_SLSH, KC_COLN, KC_PLUS,     GRV,                                            GRV, KC_AMPR, KC_ASTR, KC_QUES, KC_BSLS, _______,
+     _______,   KC_AT, KC_PERC,    EXLM,  KC_EQL, KC_PIPE,                                        KC_HASH,  KC_EQL,     DQT, KC_UNDS, KC_SCLN, KC_QUOT,
+     _______, KC_HASH, KC_MINS,   KC_LT,   KC_GT, KC_QUES, KC_LBRC,                      KC_RBRC,   UPDIR, KC_CIRC,  KC_DLR,  KC_DOT, _______, _______,
+     _______, _______, _______,          _______, OSL(_LBRK), _______, _______,    _______, _______, OSL(_RBRK), _______,          _______, _______, _______
     ),
     [_NAV] = LAYOUT(
      _______, _______, _______,    OSMA,    OSMM, _______,                                        KC_PGUP,  PRVTAB,  NXTTAB,  CMDTAB,  CMDGRV, KC_BSPC,
      _______, _______,    OSMA,    OSMC,    OSMG,    OSMH,                                        KC_LEFT, KC_DOWN,  KC_UP, KC_RIGHT, _______, _______,
      _______, _______, _______,    OSMA,    OSMS, _______, _______,                      _______, KC_PGDN, KC_HOME,  KC_END,   C_BSP, _______, _______,
-     _______, _______, _______,          _______, _______, _______, _______,    _______, _______, KC_ENT, _______,          _______, _______, _______
+     _______, _______, _______,          _______, _______,   SBSPC, _______,    _______,     ENT, _______, _______,          _______, _______, _______
     ),
     [_NUM] = LAYOUT(
-     _______, _______,    OSMP, _______,    OSMM, _______,                                        _______,    KC_7,    KC_8,    KC_9, KC_MINS, KC_BSPC,
-     _______,    OSMG,    OSMA,    OSMC,    OSMS,    OSMH,                                        _______,    KC_4,    KC_5,    KC_6, KC_COLN, KC_BSLS,
-     _______, _______, _______, _______, _______, _______, _______,                      _______, _______,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
-     _______, _______, _______,          _______, _______, CW_TOGG, _______,    _______, KC_0, KC_DOT, _______,          _______, _______, _______
+     _______, _______,    OSMP, _______,    OSMM, _______,                                        KC_PLUS,    KC_7,    KC_8,    KC_9, KC_MINS, KC_BSPC,
+     _______, _______,    OSMA,    OSMC,    OSMG,    OSMH,                                        KC_LBRC,    KC_4,    KC_5,    KC_6, KC_COLN, _______,
+     _______, _______, _______, _______,    OSMS, _______, _______,                      _______, KC_RBRC,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
+     _______, _______, _______,          _______, KC_LBRC,   SBSPC, KC_DOT,    _______, KC_0, KC_DOT, KC_RBRC,          _______, _______, _______
     ),
     [_FUNC] = LAYOUT(
      _______, _______, _______, _______, _______, _______,                                        _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
@@ -62,18 +60,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______, _______, _______, _______, _______, _______,                      _______, _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
      _______, _______, _______,          _______, _______, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
     ),
+    [_NUMLINE] = LAYOUT(
+     _______,    KC_0,    KC_7,    KC_8,    KC_9, KC_PLUS,                                        _______, KC_RCBR, KC_LCBR, _______, _______, _______,
+     _______,    KC_0,    KC_1,    KC_2,    KC_3, KC_COLN,                                        _______, KC_RPRN, KC_LPRN, _______, _______, _______,
+     _______, _______,    KC_4,    KC_5,    KC_6, _______, _______,                      _______, _______, KC_RBRC, KC_LBRC, _______, _______, _______,
+     _______, _______, _______,          _______,    KC_0, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
+    ),
     [_ADJUST] = LAYOUT(
      xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, QK_BOOT,                                        xxxxxxx, UG_HUED, UG_HUEU, UG_PREV, UG_NEXT, xxxxxxx,
      xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx,                                        KC_BRIU, KC_MPRV, KC_MPLY, KC_MNXT, xxxxxxx, xxxxxxx,
      xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx,                      xxxxxxx, KC_BRID, KC_VOLD, KC_MUTE, KC_VOLU, xxxxxxx, xxxxxxx,
      xxxxxxx, xxxxxxx, xxxxxxx,          xxxxxxx, xxxxxxx, xxxxxxx, _______,    _______, xxxxxxx, xxxxxxx, xxxxxxx,          xxxxxxx, xxxxxxx, xxxxxxx
     ),
-    [_GAME] = LAYOUT(
-     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                           KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-     KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                           KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_QUOT,                      KC_SLSH, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   KC_RSFT,
-     KC_MUTE, KC_ESC,  KC_LCTL,          KC_LGUI, KC_LCTL,  KC_SPC, _______,    _______ ,KC_SPC , KC_LALT, KC_RGUI,          KC_LEFT, KC_DOWN, KC_RGHT
-    )
+    [_LBRK] = LAYOUT(
+     _______, _______, KC_LCBR, KC_RCBR, _______, _______,                                        _______, _______, _______, _______, _______, _______,
+     _______, _______, KC_LPRN, KC_RPRN, _______, _______,                                        _______, _______, _______, _______, _______, _______,
+     _______, _______, KC_LBRC, KC_RBRC, _______, _______, _______,                      _______, _______, _______, _______, _______, _______, _______,
+     _______, _______, _______,          _______, _______, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
+    ),
+    [_RBRK] = LAYOUT(
+     _______, _______, _______, _______, _______, _______,                                        _______, _______, KC_RCBR, KC_LCBR, _______, _______,
+     _______, _______, _______, _______, _______, _______,                                        _______, _______, KC_RPRN, KC_LPRN, _______, _______,
+     _______, _______, _______, _______, _______, _______, _______,                      _______, _______, _______, KC_RBRC, KC_LBRC, _______, _______,
+     _______, _______, _______,          _______, _______, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
+    ),
 };
 
 //  Template:
@@ -96,8 +106,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // case SPC: // still use permissive hold for ctrl
         //     return TAPPING_TERM - 25;
         case MOD_A: // try high tapping term and permissive hold
-        case MOD_R: // alt is annoying to trigger
             return TAPPING_TERM + 25;
+        case MOD_R: // alt is annoying to trigger
         case MOD_S:
         case MOD_T:
             return TAPPING_TERM - 10;
@@ -109,10 +119,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // case MOD_M:
         case MOD_N:
         case MOD_E: // still use permissive hold for ctrl
-            return TAPPING_TERM - 10;
         case MOD_I:
+            return TAPPING_TERM - 10;
         case MOD_O: // this pinky lags behind the most, more than left pinky
             return TAPPING_TERM + 25;
+
+        case DQT:
+        case EXLM:
+            return TAPPING_TERM - 25;
 
         default:
             return TAPPING_TERM;
@@ -126,7 +140,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         // Home-row and other tight combos
         case resc:
         case lesc:
-        case lent:
+        case rent:
+        case ctrl_bspc:
+        case alt_bspc:
             return COMBO_TERM - 10;
         default: // this is pretty decent
             return COMBO_TERM;
@@ -200,14 +216,11 @@ void matrix_scan_user(void) { // The very important timer.
 
 // repeat key setup stolen from precondition gist here: https://gist.github.com/NotGate/3e3d8ab81300a86522b2c2549f99b131
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // const uint8_t mods         = get_mods();
-    // const uint8_t oneshot_mods = get_oneshot_mods();
-    // hit transparent key, swap out and continue
-    // if (!process_numlock(keycode, record)){
-    //   return false;
-    // }
-    //
-    // say oneshot is pressed and handle the interaction
+#ifdef ACHORDION_ENABLE
+    if (!process_achordion(keycode, record)) {
+        return false;
+    }
+#endif
     switch (keycode) {
         // not super useful
         // case QK_MOD_TAP ... QK_MOD_TAP_MAX:
@@ -245,6 +258,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         //         set_mods(mods);    // Restore mods.
         //     }
         //     return false;
+        case UPDIR:
+            if (record->event.pressed) {
+                SEND_STRING("../");
+            }
+            return false;
         case WQ:
             if (record->event.pressed) {
                 SEND_STRING(":wq");
@@ -277,6 +295,65 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case PARS:
+            if (record->event.pressed) {
+                tap_code16(KC_LPRN);
+                tap_code16(KC_RPRN);
+            }
+            break;
+        case CURLS:
+            if (record->event.pressed) {
+                tap_code16(KC_LCBR);
+                tap_code16(KC_RCBR);
+            }
+            break;
+        case BRKS:
+            if (record->event.pressed) {
+                tap_code16(KC_LBRC);
+                tap_code16(KC_RBRC);
+            }
+            break;
+        case DQT:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_DQT); // Send KC_DQUO on tap
+                return false;       // Return false to ignore further processing of key
+            }
+            break;
+        case EXLM:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_EXLM); // Send KC_DQUO on tap
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
     }
     return true;
 };
+
+#ifdef ACHORDIAN_ENABLE
+bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
+    // Exceptionally consider the following chords as holds, even though they
+    // are on the same hand in Dvorak.
+    switch (tap_hold_keycode) {
+        // case MOD_A: // A + U.
+        //     if (other_keycode == HOME_U) {
+        //         return true;
+        //     }
+        //     break;
+
+        // case HOME_S: // S + H and S + G.
+        //     if (other_keycode == HOME_H || other_keycode == KC_G) {
+        //         return true;
+        //     }
+        //     break;
+    }
+
+    // Also allow same-hand holds when the other key is in the rows below the
+    // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
+    if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) {
+        return true;
+    }
+
+    // Otherwise, follow the opposite hands rule.
+    return achordion_opposite_hands(tap_hold_record, other_record);
+}
+#endif

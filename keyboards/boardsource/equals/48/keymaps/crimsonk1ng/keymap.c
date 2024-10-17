@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
       _______, _______,     GRV, KC_HASH, KC_BSLS, TD_UPDIR,TD_UPDIR, KC_CIRC,  KC_DLR,  KC_DOT, _______, _______,
   //|--------+--------+--------+--------+--------+--------+---------+--------+--------+--------+--------+--------|
-      _______, _______, _______,     GRV, KC_COLN, _______,    _______, _______, _______, _______, _______, _______
+      _______, _______, _______,     GRV, MO(_BRK), _______,    _______, MO(_BRK), _______, _______, _______, _______
   ),
   [_BRK] = LAYOUT_FUN( // bracks on right, terminal stuff left
   //,-----------------------------------------------------.----------------------------------------------------.
@@ -55,20 +55,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_NAV] = LAYOUT_FUN( //trying redundent mod placement for easier navigation
   //,-----------------------------------------------------.-----------------------------------------------------.
-      _______,    OSMM,    OSMP,    OSMA, _______, _______, KC_PGUP,  PRVTAB,  NXTTAB,  CMDTAB,  CMDGRV, KC_BSPC,
+      _______,    OSMM,    OSMP,    OSMA,    OSMM, _______, KC_PGUP,  PRVTAB,  NXTTAB,  CMDTAB,  CMDGRV, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-         OSMH,    OSMG,    OSMA,    OSMC,    OSMS, _______, ________________VIM_______________, CW_TOGG,  KC_DEL,
+      _______,    OSMG,    OSMA,    OSMC,    OSMS,    OSMH, ________________VIM_______________, CW_TOGG,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
       _______, _______, _______,    OSMG,    OSMA, _______, KC_PGDN, KC_HOME,  KC_END,   C_BSP, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+
-      _______, _______, _______,    OSMM, KC_LGUI, KC_LCTL, KC_LSFT,  KC_ENT,   A_BSP, _______, _______, _______
+      _______, _______, _______,    OSMM, _______, KC_LSFT, KC_LSFT,  KC_ENT,   A_BSP, _______, _______, _______
   ),
 
   [_NUM] = LAYOUT_FUN(
   //,-----------------------------------------------------.-----------------------------------------------------.
-      _______,    OSMM,    OSMP, _______, _______, _______,    KC_6,    KC_7,    KC_8,    KC_9, KC_MINS, KC_BSPC,
+      _______,    OSMM,    OSMP, _______,    OSMM, _______,    KC_6,    KC_7,    KC_8,    KC_9, KC_MINS, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|--------+---------+--------+-------+--------+--------|
-         OSMH,    OSMG,    OSMA,    OSMC,    OSMS, _______,    KC_0,    KC_4,    KC_5,    KC_6, KC_COLN, KC_BSLS,
+      _______,    OSMG,    OSMA,    OSMC,    OSMS,    OSMH,    KC_0,    KC_4,    KC_5,    KC_6, KC_COLN, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|--------+---------+--------+-------+--------+--------|
       _______, _______, _______, _______, _______, _______,  KC_DOT,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  --------+--------+--------+--------+--------+
@@ -210,31 +210,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 // makes it a little difficult to manage with layer taps
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-            // MIDDLE
-            //
-        case MODLAY:
-        case MOD_A: // try high tapping term and permissive hold
-        case MOD_R: // alt is annoying to trigger
-        case MOD_S:
-        case MOD_T:
-        case MOD_G:
 
-        case LAY_U:
-        case LAY_Y:
-
-        case MOD_M:
-        case MOD_N:
-        case MOD_E: // still use permissive hold for ctrl
-        case MOD_I:
-        case MOD_O: // this pinky lags behind the most, more than left pinky
-        case QUOT:
-            // bottom row
-        case MOD_V:
-        case MOD_D:
-        case MOD_K:
-        case MOD_H:
-
-            return false;
+        case BSPC:
+            return true;
         default:
             return true;
     }

@@ -1,7 +1,25 @@
-// HOME
-COMB(lesc,          KC_ESC,     MOD_R, MOD_S)
-COMB(lent,          KC_ENT,     MOD_M, MOD_N)
-COMB(alt_bspc,  A(KC_BSPC),      MOD_U, MOD_Y)
-COMB(ctrl_bspc, C(KC_BSPC),      MOD_Y, MINS)
+// RIGHT
+COMB(rent,          KC_ENT,       MOD_M, MOD_N)
+COMB(tilde,         KC_TILDE,     MOD_Q, MOD_W)
+COMB(rtab,          KC_TAB,       MOD_COMM, MOD_DOT)
+SUBS(rbtmupdir,      "../",        MOD_H, MOD_COMM, MOD_DOT)
 
-COMB(resc,     KC_ESC,      MOD_E, MOD_I)
+
+COMB(alt_bspc,  A(KC_BSPC),     MOD_U, MOD_Y)
+COMB(ctrl_bspc, C(KC_BSPC),     MOD_Y, MINS)
+COMB(delete,    KC_DEL,         MINS, KC_BSPC)
+
+
+COMB(resc,     LT(_LBRK, KC_ESC),      MOD_E, MOD_I)
+
+COMB(thumbnum, MO(_NUMLINE),    SPC, KC_DQT)
+
+// Home Combo on Sym Layer
+SUBS(homedir,  "~/", KC_BSLS, KC_SLSH)
+
+// Left Side
+COMB(lesc,      LT(_RBRK, KC_ESC),     MOD_R, MOD_S)
+COMB(lslash,    KC_SLSH,     MOD_W, MOD_F)
+SUBS(btmupdir,  "../",       MOD_W, MOD_F, MOD_P)
+
+COMB(btmtab,    KC_TAB,     MOD_X, MOD_C)

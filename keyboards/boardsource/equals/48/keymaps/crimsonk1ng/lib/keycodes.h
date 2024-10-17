@@ -71,7 +71,7 @@ enum custom_keycodes {
 #define MOD_D   LSFT_T(KC_D)
 #define MOD_V   KC_V
 // THUMBS
-#define BSPC   LT(_NUM, KC_BSPC)
+#define BSPC   LSFT_T(KC_BSPC)
 #define ENT    LT(_NAV, KC_ENT)
 #define SYMO   OSL(_SYM)
 // END LEFT

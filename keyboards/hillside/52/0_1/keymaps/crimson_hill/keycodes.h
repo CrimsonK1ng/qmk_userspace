@@ -5,7 +5,6 @@
 #include QMK_KEYBOARD_H
 #include "layers.h"
 
-
 // One shot mods
 #define OSMS OSM(MOD_LSFT)
 #define OSMC OSM(MOD_LCTL)
@@ -18,21 +17,21 @@
 #define OSMCS OSM(MOD_LSFT | MOD_LCTL)
 #define OSMGS OSM(MOD_LSFT | MOD_LGUI)
 
-#define BRACKS OSL(_BRK)
+#define NUMBER TT(_NUM)
 
 // TOP RIGHT
 #define MOD_J KC_J
 #define MOD_L KC_L
 #define MOD_U KC_U
-#define MOD_Y LT(_BRK, KC_Y)
+#define MOD_Y KC_Y
 #define MINS  KC_MINS
 #define FBSPC LT(_FUNC, KC_BSPC)
 // MIDDLE
-#define MOD_M     MEH_T(KC_M)
+#define MOD_M     KC_M
 #define MOD_N     RGUI_T(KC_N)
 #define MOD_E     RCTL_T(KC_E)
 #define MOD_I     LT(_SYM, KC_I)
-#define MOD_O     LT(_BRK, KC_O)
+#define MOD_O     KC_O
 #define QUOT      HYPR_T(KC_QUOT)
 // BOTTOM
 #define MOD_K     KC_K
@@ -49,7 +48,7 @@
 #define MOD_P KC_P
 #define MOD_B KC_B
 // MIDDLE
-#define MODLAY  LT(_NAV, KC_BSPC) // outer column
+#define MODLAY  OSL(_SYM)
 #define MOD_A   LT(_NAV, KC_A)
 #define MOD_R   LT(_SYM, KC_R)
 #define MOD_S   LCTL_T(KC_S)
@@ -63,10 +62,11 @@
 #define MOD_D   LSFT_T(KC_D)
 #define MOD_V   KC_V
 // THUMBS
-#define BSPC   LT(_NAV, KC_BSPC)
-#define ENT    LSFT_T(KC_ENT)
-#define SYMO   OSL(_SYM)
+#define BSPC   LT(_NUM, KC_BSPC)
+#define ENT    LT(_NUMLINE,KC_ENT)
+#define SPC    LT(_SYM, KC_SPC)//LT(0, KC_SPC)// RCTL_T(KC_SPC)
 // END LEFT
+#define SBSPC    LSFT_T(KC_BSPC)
 
 // ----------------------------------
 
@@ -74,8 +74,10 @@
 #define GRV     LT(0, KC_GRV)
 #define ADJUST  LT(_ADJUST, KC_TAB)
 #define ESC     LT(_NUM, KC_ESC)
-#define SPC    LT(_BRK, KC_SPC)//LT(0, KC_SPC)// RCTL_T(KC_SPC)
 #define TAB    HYPR_T(KC_TAB)
+#define FUNCDEL LT(_FUNC, KC_DEL)
+#define EXLM    LT(_RBRK, KC_PERC)
+#define DQT     LT(_LBRK, KC_DQT)
 
 // SPECIAL THUMBS
 #define C_BSP  C(KC_BSPC)
