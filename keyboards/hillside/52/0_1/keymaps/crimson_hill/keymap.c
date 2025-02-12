@@ -5,7 +5,9 @@
 #ifdef COMBO_ENABLE
 #    include "g/keymap_combo.h"
 #endif
-
+#ifdef ACHORDION_ENABLE
+# include "features/achordion.h"
+#endif
 // MACROS
 enum custom_keycodes {
     // some custom keys
@@ -202,7 +204,7 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 #endif
 
-void matrix_scan_user(void) { // The very important timer.
+void housekeeping_task_user(void) {
 #ifdef ACHORDION_ENABLE
     achordion_task();
 #endif
@@ -329,7 +331,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-#ifdef ACHORDIAN_ENABLE
+#ifdef ACHORDION_ENABLE
 bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
     // Exceptionally consider the following chords as holds, even though they
     // are on the same hand in Dvorak.

@@ -10,7 +10,7 @@
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 #define TAPPING_TOGGLE 2
-#define ACHORDIAN_ENABLE false
+#define ACHORDION_ENABLE true
 
 #define QUICK_TAP_TERM 150
 

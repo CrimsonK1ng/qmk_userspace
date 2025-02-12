@@ -174,12 +174,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_LGUI);
             }
             break;
-        case CMDGRV:
+        case CMDTAB:
             if (record->event.pressed) {
-                register_code(KC_LGUI);
-                tap_code16_delay(KC_GRV, 100);
+                if (!is_gui_tab_active) {
+                    is_gui_tab_active = true;
+                    register_code(KC_LGUI);
+                }
+                alt_tab_timer = timer_read();
+                register_code(KC_TAB);
             } else {
-                unregister_code(KC_LGUI);
+                unregister_code(KC_TAB);
             }
             break;
     }
