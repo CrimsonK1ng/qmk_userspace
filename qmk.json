@@ -1,9 +1,11 @@
 {
-    "userspace_version": "1.0",
+    "userspace_version": "1.1",
     "build_targets": [
         ["controllerworks/mini42", "crimsonk1ng"],
         ["boardsource/equals/48", "crimsonk1ng"],
         ["keychron/q8/ansi_encoder", "crimsonk1ng"],
-        ["hillside/52/0_1", "crimson_hill"]
+        ["hillside/52/0_1", "crimson_hill"],
+        ["ploopyco/madromys/rev1_001", "crimson"],
+        ["doio/kb16/rev2", "default"]
     ]
 }
