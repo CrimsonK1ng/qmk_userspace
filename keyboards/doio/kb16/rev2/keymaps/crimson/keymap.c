@@ -45,7 +45,12 @@ uint16_t alt_tab_timer     = 0;     // we will be using them soon.
 // END CMD TAB Timer
 enum layer_keycodes {
     CMDTAB = SAFE_RANGE,
-    CMDGRV
+    CMDGRV,
+    TD_COPY,
+    TD_PSTE,
+    TD_UNDO,
+    CODE,
+    UPDIR
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -72,10 +77,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
     /*  Row:    0         1        2        3         4      */
     [_BASE] = LAYOUT(
-                SSHOT,   CMDTAB,   CMDGRV,      TERM,     RM_TOGG,
-              KC_LABK,  KC_LBRC,  KC_RBRC,   KC_RABK,     KC_MUTE,
-              KC_LCBR,  KC_LPRN,  KC_RPRN,   KC_RCBR,     KC_ENT,
-                KC_DEL,   DESK1,    DESK2,    DESK3
+               KC_ESC,   CMDTAB,   CMDGRV,    KC_DEL,     RM_TOGG,
+                DESK1,    DESK2,    DESK3,      TERM,     KC_MUTE,
+                SSHOT,  KC_BSLS,    UPDIR,      CODE,     KC_ENT,
+               KC_DEL,  G(KC_X), G(KC_C),   G(KC_V)
             ),
 
 /*
@@ -186,6 +191,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_TAB);
             }
             break;
+        case CODE:
+            if (record->event.pressed) {
+                tap_code16(KC_GRV);
+                tap_code16(KC_GRV);
+                tap_code16(KC_GRV);
+            }
+            return false;
+        case UPDIR:  // Types ../ to go up a directory on the shell.
+            if (record->event.pressed) {
+                SEND_STRING("../");
+            }
+            return false;
+
     }
     return true;
 }

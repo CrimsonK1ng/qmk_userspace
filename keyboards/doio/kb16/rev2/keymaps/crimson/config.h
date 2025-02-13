@@ -17,6 +17,8 @@
 
 #pragma once
 
+#define ENCODER_MAP_KEY_DELAY 1
+
 #ifdef OLED_ENABLE
     /* Mapping I2C2 for OLED */
     #define I2C1_SCL_PIN B10

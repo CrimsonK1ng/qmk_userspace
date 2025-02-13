@@ -62,9 +62,9 @@
 #define MOD_D   LSFT_T(KC_D)
 #define MOD_V   KC_V
 // THUMBS
-#define BSPC   LT(_NUM, KC_BSPC)
+#define BSPC   LT(_NAV, KC_BSPC)
 #define ENT    LT(_NUMLINE,KC_ENT)
-#define SPC    LT(_SYM, KC_SPC)//LT(0, KC_SPC)// RCTL_T(KC_SPC)
+#define SPC    LT(_NAV, KC_SPC)//LT(0, KC_SPC)// RCTL_T(KC_SPC)
 // END LEFT
 #define SBSPC    LSFT_T(KC_BSPC)
 

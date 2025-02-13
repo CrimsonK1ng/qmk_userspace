@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      ADJUST,  MOD_Q,    MOD_W,    MOD_F,    MOD_P,    MOD_B,                                   MOD_J,    MOD_L,    MOD_U,    MOD_Y,    MINS,    KC_BSPC,
      MODLAY,  MOD_A,    MOD_R,    MOD_S,    MOD_T,    MOD_G,                                   MOD_M,    MOD_N,    MOD_E,    MOD_I,    MOD_O,    QUOT,
      CW_TOGG, MOD_Z,    MOD_X,    MOD_C,    MOD_D,    MOD_V, KC_QUES,               KC_DQT,    MOD_K,    MOD_H,    MOD_COMM, MOD_DOT,  MOD_SLSH,   CW_TOGG,
-     FUNCDEL, KC_VOLD,  KC_VOLU,      OSL(_NUM),  OSL(_SYM), BSPC, ENT,       OSMS,   SPC , OSL(_SYM), KC_TAB,    PARS, CURLS,    BRKS
+     KC_DEL, KC_VOLD,  KC_VOLU,      OSL(_NUM),  OSL(_SYM), BSPC, ENT,       OSMS,   SPC , OSL(_SYM), KC_TAB,    PARS, CURLS,    BRKS
     ),
     [_SYM] = LAYOUT(
      KC_TILD, KC_BSLS, KC_SLSH, KC_COLN, KC_PLUS,     GRV,                                            GRV, KC_AMPR, KC_ASTR, KC_QUES, KC_BSLS, _______,
@@ -56,12 +56,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______, _______, _______,    OSMS, _______, _______,                      _______, KC_RBRC,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
      _______, _______, _______,          _______, KC_LBRC,   SBSPC, KC_DOT,    _______, KC_0, KC_DOT, KC_RBRC,          _______, _______, _______
     ),
-    [_FUNC] = LAYOUT(
-     _______, _______, _______, _______, _______, _______,                                        _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
-     _______, _______, _______, _______, _______, _______,                                        _______,   KC_F5,   KC_F6,   KC_F7,   KC_F8, _______,
-     _______, _______, _______, _______, _______, _______, _______,                      _______, _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
-     _______, _______, _______,          _______, _______, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
-    ),
     [_NUMLINE] = LAYOUT(
      _______,    KC_0,    KC_7,    KC_8,    KC_9, KC_PLUS,                                        _______, KC_RCBR, KC_LCBR, _______, _______, _______,
      _______,    KC_0,    KC_1,    KC_2,    KC_3, KC_COLN,                                        _______, KC_RPRN, KC_LPRN, _______, _______, _______,
@@ -69,10 +63,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______, _______,          _______,    KC_0, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
     ),
     [_ADJUST] = LAYOUT(
-     xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, QK_BOOT,                                        xxxxxxx, UG_HUED, UG_HUEU, UG_PREV, UG_NEXT, xxxxxxx,
+     xxxxxxx,MO(_FUNC), xxxxxxx, xxxxxxx, xxxxxxx, QK_BOOT,                                        xxxxxxx, UG_HUED, UG_HUEU, UG_PREV, UG_NEXT, xxxxxxx,
      xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx,                                        KC_BRIU, KC_MPRV, KC_MPLY, KC_MNXT, xxxxxxx, xxxxxxx,
      xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx, xxxxxxx,                      xxxxxxx, KC_BRID, KC_VOLD, KC_MUTE, KC_VOLU, xxxxxxx, xxxxxxx,
      xxxxxxx, xxxxxxx, xxxxxxx,          xxxxxxx, xxxxxxx, xxxxxxx, _______,    _______, xxxxxxx, xxxxxxx, xxxxxxx,          xxxxxxx, xxxxxxx, xxxxxxx
+    ),
+    [_FUNC] = LAYOUT(
+     _______, _______, _______, _______, _______, _______,                                        _______,   KC_F7,   KC_F8,   KC_F9,  KC_F10, _______,
+     _______, _______, _______, _______, _______, _______,                                        _______,   KC_F4,   KC_F5,   KC_F6,  KC_F11, _______,
+     _______, _______, _______, _______, _______, _______, _______,                      _______, _______,   KC_F1,   KC_F2,   KC_F3,  KC_F12, _______,
+     _______, _______, _______,          _______, _______, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
     ),
     [_LBRK] = LAYOUT(
      _______, _______, KC_LCBR, KC_RCBR, _______, _______,                                        _______, _______, _______, _______, _______, _______,
@@ -336,22 +336,150 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, ui
     // Exceptionally consider the following chords as holds, even though they
     // are on the same hand in Dvorak.
     switch (tap_hold_keycode) {
-        // case MOD_A: // A + U.
-        //     if (other_keycode == HOME_U) {
-        //         return true;
-        //     }
-        //     break;
+        case MOD_W:
+            switch (other_keycode) {
+                case MOD_F:
+                case MOD_P:
+                case MOD_S:
+                case MOD_T:
+                    return true;
+            }
+            break;
+        case MOD_F:
+            switch (other_keycode) {
+                case MOD_W:
+                case MOD_P:
+                    return true;
+            }
+            break;
+        case MOD_Z:
+            switch (other_keycode) {
+                case MOD_X:
+                case MOD_C:
+                case MOD_D:
+                case MOD_V:
+                case MOD_F:
+                case MOD_S:
+                case MOD_T:
+                case MOD_G:
+                case MOD_B:
+                    return true;
+            }
+            break;
+        case MOD_X:
+            switch (other_keycode) {
+                case MOD_C:
+                case MOD_D:
+                case MOD_V:
+                case MOD_S:
+                case MOD_T:
+                case MOD_G:
+                    return true;
+            }
+            break;
+        case MOD_C:
+            switch (other_keycode) {
+                case MOD_T:
+                    return true;
+            }
+            break;
+        case MOD_T:
+            switch (other_keycode) {
+                case MOD_S:
+                case MOD_R:
+                case MOD_A:
+                case MOD_F:
+                case MOD_W:
+                case MOD_Q:
+                case MOD_C:
+                case MOD_V:
+                    return true;
+            }
+            break;
+        case MOD_S:
+            switch (other_keycode) {
+                case MOD_T:
+                case MOD_D:
+                case MOD_X:
+                    return true;
+            }
+            break;
+        case MOD_R:
+            switch (other_keycode) {
+                case MOD_S:
+                case MOD_T:
+                case MOD_G:
+                case MOD_F:
+                case MOD_P:
+                case MOD_C:
+                case MOD_D:
+                    return true;
+            }
+            break;
+        case MOD_A:
+            switch (other_keycode) {
+                case MOD_R:
+                case MOD_T:
+                case MOD_C:
+                case MOD_S:
+                case MOD_G:
+                    return true;
+            }
+            break;
+        // END LEFT
+        // START RIGHT
+        case MOD_SLSH:
+            switch (other_keycode) {
+                case MOD_L:
+                case MOD_U:
+                case MOD_N:
+                    return true;
+            }
+            break;
+        case MOD_N:
+            switch (other_keycode) {
+                case MOD_U:
+                    return true;
+            }
+            break;
+        case MOD_E:
+            switch (other_keycode) {
+                case MOD_L:
+                case MOD_N:
+                    return true;
+            }
+            break;
+        case MOD_I:
+            switch (other_keycode) {
+                case MOD_L:
+                case MOD_U:
+                case MOD_E:
+                case MOD_N:
+                case MOD_COMM:
+                case MOD_H:
+                    return true;
+            }
+            break;
 
-        // case HOME_S: // S + H and S + G.
-        //     if (other_keycode == HOME_H || other_keycode == KC_G) {
-        //         return true;
-        //     }
-        //     break;
+        // SPECIAL CASE
+        case ADJUST:
+        case QUOT:
+            return true;
+            break;
+
     }
+
+    switch (other_keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            other_keycode &= 0xff;  // Get base keycode.
+    }
+    // Allow same-hand holds with non-alpha keys.
+    if (other_keycode > KC_Z) { return true; }
 
     // Also allow same-hand holds when the other key is in the rows below the
     // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
-    if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) {
+    if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 3) { // I think it is 3 because 8 / 2 == 4 so > 3 is bottom
         return true;
     }
 

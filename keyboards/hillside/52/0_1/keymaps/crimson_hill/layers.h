@@ -5,9 +5,9 @@ typedef enum {
     _SYM,
     _NAV,
     _NUM,
-    _FUNC,
     _NUMLINE,
     _ADJUST,
+    _FUNC,
     _LBRK,
     _RBRK,
 } layers_t;
