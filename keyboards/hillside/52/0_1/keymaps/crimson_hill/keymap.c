@@ -5,9 +5,6 @@
 #ifdef COMBO_ENABLE
 #    include "g/keymap_combo.h"
 #endif
-#ifdef ACHORDION_ENABLE
-# include "features/achordion.h"
-#endif
 // MACROS
 enum custom_keycodes {
     // some custom keys
@@ -57,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______, _______,          _______, KC_LBRC,   SBSPC, KC_DOT,    _______, KC_0, KC_DOT, KC_RBRC,          _______, _______, _______
     ),
     [_NUMLINE] = LAYOUT(
-     _______,    KC_0,    KC_7,    KC_8,    KC_9, KC_PLUS,                                        _______, KC_RCBR, KC_LCBR, _______, _______, _______,
-     _______,    KC_0,    KC_1,    KC_2,    KC_3, KC_COLN,                                        _______, KC_RPRN, KC_LPRN, _______, _______, _______,
-     _______, _______,    KC_4,    KC_5,    KC_6, _______, _______,                      _______, _______, KC_RBRC, KC_LBRC, _______, _______, _______,
+     _______,    KC_0,    KC_7,    KC_8,    KC_9, KC_PLUS,                                        KC_PLUS,    KC_7,    KC_8,    KC_9, KC_MINS, KC_BSPC,
+     _______,    KC_0,    KC_1,    KC_2,    KC_3, KC_COLN,                                        KC_LBRC,    KC_4,    KC_5,    KC_6, KC_COLN, _______,
+     _______, _______,    KC_4,    KC_5,    KC_6, _______, _______,                      _______, KC_RBRC,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
      _______, _______, _______,          _______,    KC_0, _______, _______,    _______, _______, _______, _______,          _______, _______, _______
     ),
     [_ADJUST] = LAYOUT(
@@ -109,20 +106,20 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         //     return TAPPING_TERM - 25;
         case MOD_A: // try high tapping term and permissive hold
             return TAPPING_TERM + 25;
-        case MOD_R: // alt is annoying to trigger
-        case MOD_S:
-        case MOD_T:
-            return TAPPING_TERM - 10;
+        /* case MOD_R: // alt is annoying to trigger */
+        /* case MOD_S: */
+        /* case MOD_T: */
+        /*     return TAPPING_TERM - 10; */
         // case MOD_G:
         case MOD_H:
         case MOD_D:
             return TAPPING_TERM + 15;
 
         // case MOD_M:
-        case MOD_N:
-        case MOD_E: // still use permissive hold for ctrl
-        case MOD_I:
-            return TAPPING_TERM - 10;
+        /* case MOD_N: */
+        /* case MOD_E: // still use permissive hold for ctrl */
+        /* case MOD_I: */
+        /*     return TAPPING_TERM - 10; */
         case MOD_O: // this pinky lags behind the most, more than left pinky
             return TAPPING_TERM + 25;
 
@@ -205,9 +202,6 @@ bool caps_word_press_user(uint16_t keycode) {
 #endif
 
 void housekeeping_task_user(void) {
-#ifdef ACHORDION_ENABLE
-    achordion_task();
-#endif
     if (is_gui_tab_active) {
         if (timer_elapsed(alt_tab_timer) > 1000) {
             unregister_code(KC_LGUI);
@@ -218,11 +212,6 @@ void housekeeping_task_user(void) {
 
 // repeat key setup stolen from precondition gist here: https://gist.github.com/NotGate/3e3d8ab81300a86522b2c2549f99b131
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-#ifdef ACHORDION_ENABLE
-    if (!process_achordion(keycode, record)) {
-        return false;
-    }
-#endif
     switch (keycode) {
         // not super useful
         // case QK_MOD_TAP ... QK_MOD_TAP_MAX:
@@ -331,10 +320,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-#ifdef ACHORDION_ENABLE
-bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
+bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
     // Exceptionally consider the following chords as holds, even though they
     // are on the same hand in Dvorak.
+    /*
     switch (tap_hold_keycode) {
         case MOD_W:
             switch (other_keycode) {
@@ -392,7 +381,7 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, ui
                 case MOD_W:
                 case MOD_Q:
                 case MOD_C:
-                case MOD_V:
+                case MOD_Z:
                     return true;
             }
             break;
@@ -401,6 +390,7 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, ui
                 case MOD_T:
                 case MOD_D:
                 case MOD_X:
+                case MOD_A:
                     return true;
             }
             break;
@@ -468,22 +458,18 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, ui
             break;
 
     }
+    */
 
-    switch (other_keycode) {
-        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-            other_keycode &= 0xff;  // Get base keycode.
-    }
-    // Allow same-hand holds with non-alpha keys.
-    if (other_keycode > KC_Z) { return true; }
-
-    // Also allow same-hand holds when the other key is in the rows below the
-    // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
-    if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 3) { // I think it is 3 because 8 / 2 == 4 so > 3 is bottom
-        return true;
-    }
-
-    // Otherwise, follow the opposite hands rule.
-    return achordion_opposite_hands(tap_hold_record, other_record);
+    // misunderstood, this just makes it so rolls are not immediately interpreted as held in most cases
+    // this is the proper function I want
+    return get_chordal_hold_default(tap_hold_record, other_record);
 }
-#endif
+
+char chordal_hold_handedness(keypos_t key) {
+    if (key.col == 0 || key.col == MATRIX_COLS - 1) {
+        return '*';  // Exempt the outer columns.
+    }
+    // On split keyboards, typically, the first half of the rows are on the
+    // left, and the other half are on the right.
+    return key.row < MATRIX_ROWS / 2 ? 'L' : 'R';
+}

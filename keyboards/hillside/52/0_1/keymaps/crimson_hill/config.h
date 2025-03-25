@@ -3,8 +3,8 @@
 
 #pragma once
 
-#undef TAPPING_TERM
-#define TAPPING_TERM 225 // with permissive hold
+#define TAPPING_TERM 250 // with permissive hold
+#define CHORDAL_HOLD true
 #define TAPPING_TERM_PER_KEY
 // #define PERMISSIVE_HOLD_PER_KEY
 #define PERMISSIVE_HOLD // trying achordion
@@ -12,7 +12,6 @@
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 #define TAPPING_TOGGLE 3
-#define ACHORDION_ENABLE true
 
 #define QUICK_TAP_TERM 125
 
