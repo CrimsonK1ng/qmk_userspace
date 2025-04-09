@@ -104,24 +104,24 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         //     return TAPPING_TERM - 50;
         // case SPC: // still use permissive hold for ctrl
         //     return TAPPING_TERM - 25;
-        case MOD_A: // try high tapping term and permissive hold
-            return TAPPING_TERM + 25;
-        /* case MOD_R: // alt is annoying to trigger */
+        /* case MOD_R: */
+        /* case MOD_A: // try high tapping term and permissive hold */
+        /*     return TAPPING_TERM + 25; */
         /* case MOD_S: */
         /* case MOD_T: */
         /*     return TAPPING_TERM - 10; */
         // case MOD_G:
-        case MOD_H:
-        case MOD_D:
-            return TAPPING_TERM + 15;
+        /* case MOD_H: */
+        /* case MOD_D: */
+        /*     return TAPPING_TERM + 15; */
 
         // case MOD_M:
         /* case MOD_N: */
         /* case MOD_E: // still use permissive hold for ctrl */
-        /* case MOD_I: */
         /*     return TAPPING_TERM - 10; */
-        case MOD_O: // this pinky lags behind the most, more than left pinky
-            return TAPPING_TERM + 25;
+        /* case MOD_I: */
+        /* case MOD_O: // this pinky lags behind the most, more than left pinky */
+        /*     return TAPPING_TERM + 25; */
 
         case DQT:
         case EXLM:
@@ -137,12 +137,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
         // Home-row and other tight combos
-        case resc:
-        case lesc:
-        case rent:
-        case ctrl_bspc:
-        case alt_bspc:
-            return COMBO_TERM - 10;
+        /* case resc: */
+        /* case lesc: */
+        /* case rent: */
+        /* case ctrl_bspc: */
+        /* case alt_bspc: */
+        /*     return COMBO_TERM - 10; */
         default: // this is pretty decent
             return COMBO_TERM;
     }
@@ -323,112 +323,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
     // Exceptionally consider the following chords as holds, even though they
     // are on the same hand in Dvorak.
-    /*
     switch (tap_hold_keycode) {
-        case MOD_W:
-            switch (other_keycode) {
-                case MOD_F:
-                case MOD_P:
-                case MOD_S:
-                case MOD_T:
-                    return true;
-            }
-            break;
-        case MOD_F:
-            switch (other_keycode) {
-                case MOD_W:
-                case MOD_P:
-                    return true;
-            }
-            break;
-        case MOD_Z:
-            switch (other_keycode) {
-                case MOD_X:
-                case MOD_C:
-                case MOD_D:
-                case MOD_V:
-                case MOD_F:
-                case MOD_S:
-                case MOD_T:
-                case MOD_G:
-                case MOD_B:
-                    return true;
-            }
-            break;
-        case MOD_X:
-            switch (other_keycode) {
-                case MOD_C:
-                case MOD_D:
-                case MOD_V:
-                case MOD_S:
-                case MOD_T:
-                case MOD_G:
-                    return true;
-            }
-            break;
-        case MOD_C:
-            switch (other_keycode) {
-                case MOD_T:
-                    return true;
-            }
-            break;
-        case MOD_T:
-            switch (other_keycode) {
-                case MOD_S:
-                case MOD_R:
-                case MOD_A:
-                case MOD_F:
-                case MOD_W:
-                case MOD_Q:
-                case MOD_C:
-                case MOD_Z:
-                    return true;
-            }
-            break;
         case MOD_S:
             switch (other_keycode) {
-                case MOD_T:
-                case MOD_D:
-                case MOD_X:
-                case MOD_A:
-                    return true;
-            }
-            break;
-        case MOD_R:
-            switch (other_keycode) {
-                case MOD_S:
-                case MOD_T:
-                case MOD_G:
-                case MOD_F:
-                case MOD_P:
-                case MOD_C:
                 case MOD_D:
                     return true;
             }
             break;
-        case MOD_A:
-            switch (other_keycode) {
-                case MOD_R:
-                case MOD_T:
-                case MOD_C:
-                case MOD_S:
-                case MOD_G:
-                    return true;
-            }
-            break;
-        // END LEFT
-        // START RIGHT
         case MOD_SLSH:
             switch (other_keycode) {
                 case MOD_L:
                 case MOD_U:
                 case MOD_N:
-                    return true;
-            }
-            break;
-        case MOD_N:
-            switch (other_keycode) {
-                case MOD_U:
                     return true;
             }
             break;
@@ -439,26 +345,9 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, u
                     return true;
             }
             break;
-        case MOD_I:
-            switch (other_keycode) {
-                case MOD_L:
-                case MOD_U:
-                case MOD_E:
-                case MOD_N:
-                case MOD_COMM:
-                case MOD_H:
-                    return true;
-            }
-            break;
 
-        // SPECIAL CASE
-        case ADJUST:
-        case QUOT:
-            return true;
-            break;
 
     }
-    */
 
     // misunderstood, this just makes it so rolls are not immediately interpreted as held in most cases
     // this is the proper function I want
